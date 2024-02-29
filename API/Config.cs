@@ -26,8 +26,8 @@ namespace API
             new TestUser
           {
             SubjectId = "666666",
-            Username = "ahmed",
-            Password = "elmehalawy",
+            Username = "elmehalawy",
+            Password = "Pass123$",
             Claims =
             {
               new Claim(JwtClaimTypes.Name, "Ahmed El-Mehalawy"),
@@ -84,23 +84,22 @@ namespace API
         public static IEnumerable<IdentityResource> IdentityResources => new[]
         {
             new IdentityResources.OpenId(),
+            new IdentityResources.Profile(),
+            new IdentityResource
+            {
+                Name = "role",
+                UserClaims = new List<string> {"role"}
+            }
 
             //new IdentityResource(
             //name: "openid",
             //userClaims: new[] { "sub" },
             //displayName: "Your user identifier"),
 
-            new IdentityResource
-            {
-                Name = "role",
-                UserClaims = new List<string> {"role"}
-            },
-
-            new IdentityResource(
-                name: "profile",
-                userClaims: new[] { "name", "email", "website","address"},
-                displayName: "Your profile data"){ Enabled=true, ShowInDiscoveryDocument=true},
-            //new IdentityResources.Profile(),
+            //new IdentityResource(
+            //    name: "profile",
+            //    userClaims: new[] { "name", "email", "website","address"},
+            //    displayName: "Your profile data"){ Enabled=true, ShowInDiscoveryDocument=true},
         };
 
         public static IEnumerable<ApiScope> ApiScopes => new[]
@@ -158,4 +157,3 @@ namespace API
           };
     }
 }
-
